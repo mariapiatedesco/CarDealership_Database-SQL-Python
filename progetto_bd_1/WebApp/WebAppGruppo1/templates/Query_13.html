@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Progetto_basi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+</head>
+<body >
+
+<br>
+<br>
+
+
+<!-- Links (sit on top) -->
+<div class="w3-top" style="background-color: yellow">
+  <div class="w3-row w3-large w3-light-grey">
+    <div class="w3-col s3" style="background-color: yellow ">
+      <a href="/" class="w3-button w3-block" style="background-color: yellow " >Home</a>
+    </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<!-- Content -->
+{%if scelta=="Home"%}
+<div class="w3-content" style="max-width:1100px;margin-top:80px;margin-bottom:80px">
+  <div class="w3-panel">
+    <h3><b>Se vuole lasciare una recensione prema su invio, altrimenti prema su home per concludere</b></h3>
+    <form method="GET" action="/SolQuery_15">
+<br><br>
+  <input type="submit" value="Invia">
+</form>
+
+
+{%elif scelta==None or scelta=="None"%}
+<br><br>
+<form method="GET" action="/Query_14">
+<label  class="form-label">Categoria</label>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" name="categoria" aria-label="Amount (to the nearest dollar)" required>
+  <span class="input-group-text">ex. sportiva</span>
+</div>
+<br>
+
+<input type="submit"  value="Invia">
+</form>
+
+{%else%}
+
+{%if int_num_giorni>=7%}
+
+<h3>Wow,ha uno sconto del {{sconto*100}}%</h3>
+
+{%endif%}
+
+
+<h3>Queste sono le informazioni dei veicoli disponibili</h3>
+
+<table  style="width:100%" >
+  <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+    <thead bgcolor="ffff00" >
+    <tr>
+      <th scope="col ">Id_veicolo</th>
+      <th scope="col ">Brand</th>
+      <th scope="col ">Modello</th>
+      <th scope="col">Prezzo_Giorno</th>
+      <th scope="col">Colore</th>
+      <th scope="col">Cavalli</th>
+      <th scope="col">Cilindrata</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Anni</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in range (l)%}
+    <tr>
+      <th scope="row">{{session['Veicoli_Disponibili'][i]}}</th>
+      <th scope="row">{{session['Informazioni'][i][0]}}</th>
+      <th scope="row">{{session['Informazioni'][i][1]}}</th>
+      <th scope="row">{{session['Informazioni'][i][2]}}</th>
+      <th scope="row">{{session['Informazioni'][i][3]}}</th>
+      <th scope="row">{{session['Informazioni'][i][4]}}</th>
+      <th scope="row">{{session['Informazioni'][i][5]}}</th>
+      <th scope="row">{{session['Informazioni'][i][6]}}</th>
+      <th scope="row">{{session['Informazioni'][i][7]}}</th>
+
+    </tr>
+  {%endfor%}
+
+    </tr>
+  </tbody>
+</table>
+
+<h3>I prezzi effettivi dei veicoli sono riportati in tabella, quale sceglie? </h3>
+<br>
+
+{% if l==1%}
+<form method="get" action="/SolQuery_13">
+<table  style="width:60%" >
+  <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+    <thead bgcolor="ffff00" >
+    <tr>
+      <th scope="col ">Id_veicolo</th>
+      <th scope="col">Prezzo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in range (l)%}
+    <tr>
+      <th scope="row">{{session['Prezzi'][i][0]}}</th>
+      <th scope="row">{{session['Prezzi'][i][1]}}</th>
+      <th scope="row"><input type="radio" name="html" value="{{i}}"/></th>
+    </tr>
+  {%endfor%}
+  {% for i in range (2)%}
+    <tr>
+      <th scope="row"></th>
+      <th scope="row"></th>
+      <th scope="row">{{session['Valore_2'][i]}}  <input type="radio" name="html" value="{{session['Valore'][i]}}"/></th>
+    </tr>
+  {%endfor%}
+    </tr>
+  </tbody>
+</table>
+<br>
+<br><br>
+ <input type="submit" value="Invia">
+</form>
+{%else%}
+<form method="get" action="/SolQuery_13">
+<table  style="width:60%" >
+  <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+    <thead bgcolor="ffff00" >
+    <tr>
+      <th scope="col ">Id_veicolo</th>
+      <th scope="col">Prezzo</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in range (l)%}
+    <tr>
+      <th scope="row">{{session['Prezzi'][i][0][0]}}</th>
+      <th scope="row">{{session['Prezzi'][i][0][1]}}</th>
+      <th scope="row"><input type="radio" name="html" value="{{i}}"/></th>
+    </tr>
+  {%endfor%}
+  {% for i in range (2)%}
+    <tr>
+      <th scope="row"></th>
+      <th scope="row"></th>
+      <th scope="row">{{session['Valore_2'][i]}}  <input type="radio" name="html" value="{{session['Valore'][i]}}"/></th>
+    </tr>
+  {%endfor%}
+    </tr>
+  </tbody>
+</table>
+<br>
+<br><br>
+ <input type="submit" value="Invia">
+</form>
+ {%endif%}
+{%endif%}
+
+
+
+</div>
+
+<!-- Footer -->
+
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+
+</footer>
+
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Progetto_basi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4 {font-family:"Lato", sans-serif}
+.mySlides {display:none}
+.w3-tag, .fa {cursor:pointer}
+.w3-tag {height:15px;width:15px;padding:0;margin-top:6px}
+</style>
+</head>
+<body background = "C:\Users\Lenovo\Pictures\Camera Roll\WIN_20220523_00_44_27_Pro.jpg" >
+
+<!-- Links (sit on top) -->
+<div class="w3-top" style="background-color: yellow">
+  <div class="w3-row w3-large w3-light-grey">
+    <div class="w3-col s3" style="background-color: yellow ">
+      <a href="/" class="w3-button w3-block" style="background-color: yellow " >Home</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content -->
+<br>
+<br>
+
+<br>
+<h3> la concessionaria che ha fatto più vendite nel periodo {{periodo}}</h3>
+
+<table  style="width:30%" >
+  <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+</style>
+    <thead bgcolor="ffff00" >
+    <tr>
+
+      <th scope="col">Id_Concessionaria</th>
+      <th scope="col">Numero_Vendite</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+
+
+
+    {% for i in range (l)%}
+      <tr>
+      <th scope="row">{{ris43[i][0]}}</th>
+      <th scope="row">{{ris43[i][1]}}</th>
+
+
+
+      </tr>
+    {%endfor%}
+
+  </tbody>
+</table>
+
+
+
+<!-- Footer -->
+<br><br><br>
+<footer class="w3-container w3-padding-32 w3-light-grey w3-center">
+  <a href="#" class="w3-button w3-black w3-margin"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+
+</footer>
+
+
+
+</body>
+</html>
